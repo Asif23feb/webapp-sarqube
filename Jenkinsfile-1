@@ -1,13 +1,11 @@
 pipeline {
   agent any
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
+  
   stages {
     stage('Scan') {
       steps {
         withSonarQubeEnv(installationName: 'sonarqube7.1') { 
-          sh './mvn clean install sonarqube:sonarqube'
+          sh 'mvn clean install sonarqube:sonarqube'
         }
       }
     }
